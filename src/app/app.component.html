@@ -1,7 +1,23 @@
 <div class="container">
 	<h1>Prueba técnica - Estudio Faser</h1>
 	<h2>Listado de tareas</h2>
-	<ol>
-		<li *ngFor="let tarea of tareas">{{tarea.titulo}} ({{tarea.minutos}} minutos)</li>
-	</ol>
+	
+	<!-- Requerimiento 1: Convertir el listado de tareas en una tabla HTML -->
+	<!-- La tabla contiene dos columnas: 'Título' y 'Minutos' -->
+	<table>
+		<thead>
+			<tr>
+				<th>Título</th>
+				<th>Minutos</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Iterar sobre las tareas con *ngFor para generar una fila por cada tarea -->
+			<tr *ngFor="let tarea of tareas">
+				<!-- Mostrar el título y los minutos de cada tarea -->
+				<td>{{ tarea.titulo }}</td>
+				<td>{{ tarea.minutos }}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
