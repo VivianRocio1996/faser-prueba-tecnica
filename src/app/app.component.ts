@@ -13,7 +13,7 @@ export class AppComponent {
 	nuevaTareaMinutos: number = 0;  // Duración de la nueva tarea en minutos
 	private idCounter = 1; // Contador para asignar IDs únicos
 	tareasSeleccionadas: Tarea[] = []; // Almacena las tareas seleccionadas
-
+    ordenAscendente: boolean = true; // Estado de ordenación
 	constructor(
 		public service: AppService,
 	) { }
@@ -58,5 +58,18 @@ export class AppComponent {
 	eliminarTareasSeleccionadas() {
 		this.tareas = this.tareas.filter(tarea => !this.tareasSeleccionadas.includes(tarea)); // Filtrar las tareas no seleccionadas
 		this.tareasSeleccionadas = []; // Limpiar la lista de tareas seleccionadas
+	}
+	// Requerimiento 5: Función para ordenar tareas
+	ordenarTareas(propiedad: string) {
+		this.ordenAscendente = !this.ordenAscendente; // Cambiar el estado de ordenación
+		this.tareas.sort((a, b) => {
+			if (a[propiedad] < b[propiedad]) {
+				return this.ordenAscendente ? -1 : 1; // Orden ascendente o descendente
+			}
+			if (a[propiedad] > b[propiedad]) {
+				return this.ordenAscendente ? 1 : -1; // Orden ascendente o descendente
+			}
+			return 0;
+		});
 	}
 }

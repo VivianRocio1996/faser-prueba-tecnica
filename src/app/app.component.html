@@ -7,8 +7,8 @@
 		<thead>
 			<tr>
 				<th>Seleccionar</th>  <!-- Columna para seleccionar tareas -->
-				<th>Título</th>
-				<th>Minutos</th>
+				<th (click)="ordenarTareas('titulo')">Título</th>  <!-- Encabezado de Título -->
+				<th (click)="ordenarTareas('minutos')">Minutos</th>  <!-- Encabezado de Minutos -->
 			</tr>
 		</thead>
 		<tbody>
