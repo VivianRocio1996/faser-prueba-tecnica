@@ -13,7 +13,7 @@
 		</thead>
 		<tbody>
 			<!-- Iterar sobre las tareas con *ngFor para generar una fila por cada tarea -->
-			<tr *ngFor="let tarea of tareas">
+			<tr *ngFor="let tarea of tareas" [ngClass]="{'destacada': tarea.destacada}">
 				<td>
 					<!-- Checkbox para seleccionar la tarea -->
 					<input type="checkbox" (change)="toggleTareaSeleccionada(tarea)">
@@ -40,4 +40,7 @@
 
 	<!-- Requerimiento 4: Botón para eliminar tareas seleccionadas -->
 	<button (click)="eliminarTareasSeleccionadas()" [disabled]="tareasSeleccionadas.length === 0">Eliminar Tareas Seleccionadas</button>
+	
+	<!-- Requerimiento 6: Botón para marcar tareas como destacadas -->
+	<button (click)="marcarTareasDestacadas()" [disabled]="tareasSeleccionadas.length === 0">Marcar como Destacadas</button>
 </div>

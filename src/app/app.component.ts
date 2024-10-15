@@ -14,6 +14,7 @@ export class AppComponent {
 	private idCounter = 1; // Contador para asignar IDs únicos
 	tareasSeleccionadas: Tarea[] = []; // Almacena las tareas seleccionadas
     ordenAscendente: boolean = true; // Estado de ordenación
+	
 	constructor(
 		public service: AppService,
 	) { }
@@ -32,7 +33,8 @@ export class AppComponent {
 			const nuevaTarea: Tarea = {
 				id: this.idCounter++,  // Asignar un ID único
 				titulo: this.nuevaTareaTitulo,
-				minutos: this.nuevaTareaMinutos
+				minutos: this.nuevaTareaMinutos,
+				destacada: false // Inicialmente, la tarea no está destacada
 			};
 			this.tareas.push(nuevaTarea);  // Añadir la nueva tarea al listado
 			this.limpiarFormulario();      // Limpiar el formulario después de agregar la tarea
@@ -54,11 +56,13 @@ export class AppComponent {
 			this.tareasSeleccionadas.splice(index, 1);
 		}
 	}
+
 	// Requerimiento 4: Función para eliminar tareas seleccionadas
 	eliminarTareasSeleccionadas() {
 		this.tareas = this.tareas.filter(tarea => !this.tareasSeleccionadas.includes(tarea)); // Filtrar las tareas no seleccionadas
 		this.tareasSeleccionadas = []; // Limpiar la lista de tareas seleccionadas
 	}
+
 	// Requerimiento 5: Función para ordenar tareas
 	ordenarTareas(propiedad: string) {
 		this.ordenAscendente = !this.ordenAscendente; // Cambiar el estado de ordenación
@@ -71,5 +75,13 @@ export class AppComponent {
 			}
 			return 0;
 		});
+	}
+
+	// Requerimiento 6: Marcar tareas seleccionadas como destacadas
+	marcarTareasDestacadas() {
+		for (const tarea of this.tareasSeleccionadas) {
+			tarea.destacada = true; // Marcar la tarea como destacada
+		}
+		this.tareasSeleccionadas = []; // Limpiar la lista de tareas seleccionadas
 	}
 }
