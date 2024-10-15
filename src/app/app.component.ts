@@ -84,4 +84,8 @@ export class AppComponent {
 		}
 		this.tareasSeleccionadas = []; // Limpiar la lista de tareas seleccionadas
 	}
+	// Requerimiento 7: ordenar todas las tareas de manera aleatoria.
+	ordenarAleatorio() {
+		this.tareas = this.tareas.sort(() => Math.random() - 0.5); 
+	}
 }
