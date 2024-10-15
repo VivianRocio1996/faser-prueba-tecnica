@@ -37,4 +37,7 @@
 		</div>
 		<button type="submit">Agregar Tarea</button>
 	</form>
+
+	<!-- Requerimiento 4: Botón para eliminar tareas seleccionadas -->
+	<button (click)="eliminarTareasSeleccionadas()" [disabled]="tareasSeleccionadas.length === 0">Eliminar Tareas Seleccionadas</button>
 </div>

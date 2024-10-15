@@ -54,4 +54,9 @@ export class AppComponent {
 			this.tareasSeleccionadas.splice(index, 1);
 		}
 	}
+	// Requerimiento 4: Función para eliminar tareas seleccionadas
+	eliminarTareasSeleccionadas() {
+		this.tareas = this.tareas.filter(tarea => !this.tareasSeleccionadas.includes(tarea)); // Filtrar las tareas no seleccionadas
+		this.tareasSeleccionadas = []; // Limpiar la lista de tareas seleccionadas
+	}
 }
