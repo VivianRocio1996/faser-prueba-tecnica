@@ -3,10 +3,10 @@
 	<h2>Listado de tareas</h2>
 	
 	<!-- Requerimiento 1: Convertir el listado de tareas en una tabla HTML -->
-	<!-- La tabla contiene dos columnas: 'Título' y 'Minutos' -->
 	<table>
 		<thead>
 			<tr>
+				<th>Seleccionar</th>  <!-- Columna para seleccionar tareas -->
 				<th>Título</th>
 				<th>Minutos</th>
 			</tr>
@@ -14,7 +14,10 @@
 		<tbody>
 			<!-- Iterar sobre las tareas con *ngFor para generar una fila por cada tarea -->
 			<tr *ngFor="let tarea of tareas">
-				<!-- Mostrar el título y los minutos de cada tarea -->
+				<td>
+					<!-- Checkbox para seleccionar la tarea -->
+					<input type="checkbox" (change)="toggleTareaSeleccionada(tarea)">
+				</td>
 				<td>{{ tarea.titulo }}</td>
 				<td>{{ tarea.minutos }}</td>
 			</tr>

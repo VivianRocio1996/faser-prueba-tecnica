@@ -12,6 +12,7 @@ export class AppComponent {
 	nuevaTareaTitulo: string = '';  // Título de la nueva tarea
 	nuevaTareaMinutos: number = 0;  // Duración de la nueva tarea en minutos
 	private idCounter = 1; // Contador para asignar IDs únicos
+	tareasSeleccionadas: Tarea[] = []; // Almacena las tareas seleccionadas
 
 	constructor(
 		public service: AppService,
@@ -22,12 +23,11 @@ export class AppComponent {
 	}
 
 	async obtenerTareas() {
-		this.tareas = await this.service.obtenerTareas();  
+		this.tareas = await this.service.obtenerTareas();  // Obtener tareas del servicio
 	}
 
-	// Requerimiento 2: Agregar la opción para poder agregar nuevas tareas al listado, cada una con su título y duración en minutos.
+	// Requerimiento 2: Agregar una nueva tarea
 	agregarTarea() {
-		// Verificar que el título no esté vacío y que los minutos sean mayores a cero
 		if (this.nuevaTareaTitulo.trim() && this.nuevaTareaMinutos > 0) {
 			const nuevaTarea: Tarea = {
 				id: this.idCounter++,  // Asignar un ID único
@@ -41,7 +41,17 @@ export class AppComponent {
 
 	// Función para limpiar los campos del formulario
 	limpiarFormulario() {
-		this.nuevaTareaTitulo = '';  
-		this.nuevaTareaMinutos = 0;  
+		this.nuevaTareaTitulo = '';  // Reiniciar el título
+		this.nuevaTareaMinutos = 0;  // Reiniciar los minutos
+	}
+
+	// Requerimiento 3: Función para manejar la selección de tareas
+	toggleTareaSeleccionada(tarea: Tarea) {
+		const index = this.tareasSeleccionadas.indexOf(tarea);
+		if (index === -1) {
+			this.tareasSeleccionadas.push(tarea);
+		} else {
+			this.tareasSeleccionadas.splice(index, 1);
+		}
 	}
 }
